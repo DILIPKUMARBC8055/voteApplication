@@ -9,7 +9,7 @@ import router from "./src/route/application.route.js"; // Importing router for a
 import connectToMongodb from "./src/config/mongoose.config.js"; // Function to connect to MongoDB
 import ApplicationError from "./src/errorHandling/custom.Error.js"; // Custom error handler
 import path from "path";
-import { PassThrough } from "stream";
+
 // Creating an instance of the Express server
 const server = express();
 
@@ -26,15 +26,15 @@ server.get("/home", (req, res) => {
   res.sendFile(path.join(path.resolve(), "hompage.html"));
 });
 // Error handling middleware to catch any unhandled errors
-server.use((err, req, res) => {
-  console.log(err);
-  // If the error is an instance of ApplicationError, return a 500 status with an error message
-  if (err instanceof ApplicationError) {
-    return res.status(500).json({
-      success: false,
-      message: "operation failed due to some internal server error",
-    });
+server.use((err, req, res, next) => {
+  if (err) {
+    if (err instanceof ApplicationError) {
+      // If the error is an instance of ApplicationError
+      return res.status(err.code).send(err.message); // Send error message with appropriate status code
+    }
+    return res.status(500).send(err.message); // Otherwise, send generic error message with status code 500
   }
+  next(); // Continue to the next middleware
 });
 
 // Starting the server and listening on the specified port from environment variables
