@@ -1,5 +1,9 @@
 Voting Application
 
+
+POSTMAN API LINK: https://app.getpostman.com/run-collection/16175746-e50761a3-b80f-4523-ac2e-05bb9b352b74?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D16175746-e50761a3-b80f-4523-ac2e-05bb9b352b74%26entityType%3Dcollection%26workspaceId%3D693199e8-ec1c-4cff-8914-1de9e8425d0a
+
+
 Description
 This is a simple web application for conducting voting on various questions. Users can create questions, add options to questions, vote for options, and view the results.
 
@@ -39,6 +43,8 @@ POST /questions/:id/options: Add a new option to a question.
 POST /questions/:id/vote: Add a vote to an option.
 DELETE /questions/:id: Delete a question.
 DELETE /questions/:id/options: Delete an option.
+
+user localhost:PORT/home for API fork
 
 Folder Structure
 
