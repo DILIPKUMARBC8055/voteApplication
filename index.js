@@ -8,7 +8,8 @@ import bodyParser from "body-parser"; // Middleware for parsing request bodies
 import router from "./src/route/application.route.js"; // Importing router for application routes
 import connectToMongodb from "./src/config/mongoose.config.js"; // Function to connect to MongoDB
 import ApplicationError from "./src/errorHandling/custom.Error.js"; // Custom error handler
-
+import path from "path";
+import { PassThrough } from "stream";
 // Creating an instance of the Express server
 const server = express();
 
@@ -21,6 +22,9 @@ server.use(express.json());
 // Using the router for application routes
 server.use("/", router);
 
+server.get("/home", (req, res) => {
+  res.sendFile(path.join(path.resolve(), "hompage.html"));
+});
 // Error handling middleware to catch any unhandled errors
 server.use((err, req, res) => {
   console.log(err);
