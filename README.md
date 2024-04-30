@@ -42,7 +42,6 @@ DELETE /questions/:id/options: Delete an option.
 
 Folder Structure
 
-Copy code
 ├── src/
 │ ├── controller/
 │ │ └── vote.controller.js
